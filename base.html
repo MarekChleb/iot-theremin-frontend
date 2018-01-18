@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://bootswatch.com/3/cyborg/bootstrap.min.css">
+
+        <link type="text/css" rel="stylesheet" href="my-customs.css"> 
+
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
+            crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/vue">
+        </script>
+        <sc
+
+        
+    </head>
+    <body>
+        <div class="content">
+            <!-- {% include "./header.html" %}    -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-header">
+                  <a href="/base.html" class="navbar-brand">
+                    Theremin
+                  </a>
+                </div>
+            </nav>
+
+            <div class="container" style="height: 100%; padding-top: 60px;">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                	<div class="col-md-12">
+	                    <h1><b>IOT - Theremin</b></h1>
+	                </div>
+	                <div class="col-md-12">
+	                    <button class="btn iot-btn" :class="[ isStarted ? 'btn-success' : 'btn-primary' ]" @click="toggleStart">
+	                        <h2>
+                				<transition name="fade" mode="out-in">
+		                            <span v-if='!isStarted' key='7' class="iot-btn-msg">Start</span>
+		                            <span v-else key='8' class="iot-btn-msg">Stop</span>
+                				</transition>
+	                        </h2>
+	                    </button>
+	                </div>
+	                <div class="col-md-12">
+	                    <button class="btn iot-btn btn-info" @click="toggleVolume">
+	                    	<h2>
+	                    		<p class="iot-btn-msg">Głośność</p>
+	                    		<transition name="fade" mode="out-in">
+		                    		<p v-if="showVolume">Tu będzie slider</p>
+		                    		<!-- <vue-slider></vue-slider> -->
+		                    	</transition>
+	                    	</h2>
+	                    </button>
+	                </div>
+                    <div class="col-md-12">
+                        <button class="btn iot-btn btn-warning" @click="toggleFrequency">
+                            <h2>
+                                <p class="iot-btn-msg">Przedziały częstotliwości</p>
+                                <transition name="fade" mode="out-in">
+                                    <p v-if="showFrequency">Tu będą dwa inputy i przycisk do akceptowania</p>
+                                </transition>
+                            </h2>
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn iot-btn btn-danger" @click="toggleFrequencyImage">
+                            <h2>
+                                <p class="iot-btn-msg">Wykres częstotliwości</p>
+                                <transition name="fade" mode="out-in">
+                                    <p v-if="showFrequencyImage">Tu będzie jakiś obrazek</p>
+                                </transition>
+                            </h2>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- {% include "./footer.html "} -->
+            <div class="col-md-12" style="margin-top: 50px">
+                <h6 style="text-align: right;">© 2018 Autorzy: Bartosz Burny, Łukasz Raszkiewicz, Bartosz Korczyński, Marek Wawreniuk</h6>
+            </div>
+        </div>
+
+    </body>
+
+    <script type="text/javascript">
+    	// Vue.component('vue-slider', require('node_modules/vue-slider-component/src/vue2-slider.vue'))
+        var app = new Vue({
+            delimiters: ['{%', '}'],
+            el: '.content',
+            data() {
+                return {
+                    isStarted: false,
+                    showVolume: false,
+                    showFrequency: false,
+                    showFrequencyImage: false,
+                }
+            },
+            methods: {
+                toggleStart() {
+                    this.isStarted = !this.isStarted
+                },
+                toggleVolume() {
+                	this.showVolume = !this.showVolume
+                },
+                toggleFrequency() {
+                    this.showFrequency = !this.showFrequency
+                },
+                toggleFrequencyImage() {
+                    this.showFrequencyImage = !this.showFrequencyImage
+                }
+            }
+        })
+    </script>
+</html>

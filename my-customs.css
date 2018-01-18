@@ -1,0 +1,17 @@
+.iot-btn {
+	width: 70%;
+	margin-top: 3px;
+	margin-bottom: : 3px;
+}
+
+.iot-btn-msg {
+	font-weight: bold;
+}
+
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 0.1s;
+}
+
+.fade-enter, .fade-leave-to {
+	opacity: 0;
+}

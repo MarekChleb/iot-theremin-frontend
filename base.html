@@ -37,30 +37,30 @@
 
             <div class="container" style="height: 100%; padding-top: 60px;">
                 <div class="col-md-10 col-md-offset-1 text-center">
-                	<div class="col-md-12">
-	                    <h1><b>IOT - Theremin</b></h1>
-	                </div>
-	                <div class="col-md-12">
-	                    <button class="btn iot-btn" :class="[ isStarted ? 'btn-success' : 'btn-primary' ]" @click="toggleStart">
-	                        <h2>
-                				<transition name="fade" mode="out-in">
-		                            <span v-if='!isStarted' key='7' class="iot-btn-msg">Start</span>
-		                            <span v-else key='8' class="iot-btn-msg">Stop</span>
-                				</transition>
-	                        </h2>
-	                    </button>
-	                </div>
-	                <div class="col-md-12">
-	                    <button class="btn iot-btn btn-info" @click="toggleVolume">
-	                    	<h2>
-	                    		<p class="iot-btn-msg">Głośność</p>
-	                    		<transition name="fade" mode="out-in">
-		                    		<p v-if="showVolume">Tu będzie slider</p>
-		                    		<!-- <vue-slider></vue-slider> -->
-		                    	</transition>
-	                    	</h2>
-	                    </button>
-	                </div>
+                    <div class="col-md-12">
+                        <h1><b>IOT - Theremin</b></h1>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn iot-btn" :class="[ isStarted ? 'btn-success' : 'btn-primary' ]" @click="toggleStart">
+                            <h2>
+                                <transition name="fade" mode="out-in">
+                                    <span v-if='!isStarted' key='7' class="iot-btn-msg">Start</span>
+                                    <span v-else key='8' class="iot-btn-msg">Stop</span>
+                                </transition>
+                            </h2>
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn iot-btn btn-info" @click="toggleVolume">
+                            <h2>
+                                <p class="iot-btn-msg">Głośność</p>
+                                <transition name="fade" mode="out-in">
+                                    <p v-if="showVolume">Tu będzie slider</p>
+                                    <!-- <vue-slider></vue-slider> -->
+                                </transition>
+                            </h2>
+                        </button>
+                    </div>
                     <div class="col-md-12">
                         <button class="btn iot-btn btn-warning" @click="toggleFrequency">
                             <h2>
@@ -93,7 +93,7 @@
     </body>
 
     <script type="text/javascript">
-    	// Vue.component('vue-slider', require('node_modules/vue-slider-component/src/vue2-slider.vue'))
+        // Vue.component('vue-slider', require('node_modules/vue-slider-component/src/vue2-slider.vue'))
         var app = new Vue({
             delimiters: ['{%', '}'],
             el: '.content',
@@ -107,10 +107,29 @@
             },
             methods: {
                 toggleStart() {
-                    this.isStarted = !this.isStarted
+                    var that = this;
+
+                    // To zakomentować
+                    that.isStarted = !that.isStarted;
+
+                    // Jeśli chcecie używać fetcha to odkomentujcie to i zakomentujcie linijkę wyżej.
+                    // fetch('{% url "toggleStart" %}', {
+                    //     method: 'POST',
+                    //     body: JSON.stringify({
+                    //         value: !that.isStarted
+                    //     })
+                    // }).then(function(data) {
+                    //     if (data['ok']) {
+                    //         that.isStarted = !that.isStarted;
+                    //     } else {
+                    //         console.log("Coś poszło nie tak")
+                    //     }
+                    //   }).catch(function(error) {
+                    //       console.log(error)
+                    // })
                 },
                 toggleVolume() {
-                	this.showVolume = !this.showVolume
+                    this.showVolume = !this.showVolume
                 },
                 toggleFrequency() {
                     this.showFrequency = !this.showFrequency
